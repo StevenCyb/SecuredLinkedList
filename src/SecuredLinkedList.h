@@ -24,6 +24,7 @@ class SecuredLinkedList {
 		virtual T popUnsecured();
 		virtual void addUnsecured(unsigned int index, T t);
 		virtual T getUnsecured(unsigned int index);
+		virtual void removeUnsecured(unsigned int index);
 		virtual void unshiftUnsecured(T t);
 		virtual T shiftUnsecured();
 		virtual void clearUnsecured();
@@ -35,6 +36,7 @@ class SecuredLinkedList {
 		virtual T pop();
 		virtual void add(unsigned int index, T t);
 		virtual T get(unsigned int index);
+		virtual void remove(unsigned int index);
 		virtual void unshift(T t);
 		virtual T shift();
 		virtual void clear();
@@ -156,6 +158,33 @@ T SecuredLinkedList<T>::getUnsecured(unsigned int index) {
 		}
 		return previous->data;
 	}
+}
+
+template<typename T>
+void SecuredLinkedList<T>::remove(unsigned int index) {
+	std::lock_guard<std::mutex> locker (*mtx);
+	return removeUnsecured(index);
+}
+template<typename T>
+void SecuredLinkedList<T>::removeUnsecured(unsigned int index) {
+	if(listSize <= 0 || index >= listSize) {
+		return;
+	} else if(index == 0) {
+		shiftUnsecured();
+		return;
+	} else if(index == listSize - 1) {
+		popUnsecured();
+		return;
+	}
+
+	SecuredLinkedListNode<T> *beforePrevious; // A
+	SecuredLinkedListNode<T> *previous = root; // B
+	for(unsigned int i = 0; i < index; i++) {
+		beforePrevious = previous;
+		previous = previous->next;
+	}
+	beforePrevious->next = previous->next;
+	listSize -= 1;
 }
 
 template<typename T>

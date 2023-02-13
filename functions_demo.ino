@@ -71,6 +71,34 @@ void setup() {
   4 = 4
   */
   // stringList = [1, 2, -5, 3, 4]
+  
+  intList->remove(0);
+  intList->remove(3);
+  intList->remove(1);
+  size = intList->size();
+  for(int i = 0; i < size; i++) {
+    Serial.println(String(i) + " = " + intList->get(i));
+  }
+  //  OUTPUT
+  /*
+  0 = 2
+  1 = 3
+  */
+  // stringList = [2, 3]
+  
+  stringList.remove(0);
+  stringList.remove(3);
+  stringList.remove(1);
+  size = stringList.size();
+  for(int i = 0; i < size; i++) {
+    Serial.println(String(i) + " = " + stringList.get(i));
+  }
+  //  OUTPUT
+  /*
+  0 = Test2
+  1 = Test3
+  */
+  // stringList = ["Test2", "Test3"]
 
   stringList.clear();
   intList->clear();

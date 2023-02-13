@@ -43,6 +43,13 @@ int t = 2;
 listA.push(3, t);
 listB->push(3, t);
 ```
+<a name="Remove"></a>
+## void remove(unsigned int index)
+Remove an element on index.
+```
+listA.remove(3);
+listB->remove(3);
+```
 <a name="Get"></a>
 ## T get(unsigned int index)
 Fetches the element from the according index.
