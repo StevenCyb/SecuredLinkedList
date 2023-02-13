@@ -1,7 +1,7 @@
 # Secured Linked List
 The `SecuredLinkedList` is a library that provides the functionality of a linked list (like in Java or C#). Furthermore, the implementation is thread-safe, see demo `two_core_demo.ino`.
 The following figure illustrates the available functions. A detailed description of the functions can be found below.
-![Operations](/media/operations.png)
+![Operations](/media/operations_illustration.png)
 # Functions
 - [SecuredLinkedList()](#SecuredLinkedList)
 - [void push(T t)](#Push)
