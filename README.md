@@ -7,6 +7,7 @@ The following figure illustrates the available functions. A detailed description
 - [void push(T t)](#Push)
 - [T pop()](#Pop)
 - [void add(unsigned int index, T t)](#Add)
+- [void remove(unsigned int index)](#Remove)
 - [T get(unsigned int index)](#Get)
 - [void unshift(T t)](#Unshift)
 - [T shift()](#Shift)
