@@ -1,5 +1,5 @@
 // Created by Steven Cybinski
-// GitHub: https://github.com/StevenCyb/SecuredLinkedListNode
+// GitHub: https://github.com/StevenCyb/SecuredLinkedList
 
 #ifndef SecuredLinkedList_h
 #define SecuredLinkedList_h
@@ -100,6 +100,7 @@ T SecuredLinkedList<T>::popUnsecured() {
 	if(listSize <= 0) {
 		return T();
 	} else if(listSize > 1) {
+		SecuredLinkedListNode<T> *toRemove = leaf;
 		T cache = leaf->data;
 		SecuredLinkedListNode<T> *previous = root;
 		while(previous->next->next != NULL) {
@@ -108,9 +109,11 @@ T SecuredLinkedList<T>::popUnsecured() {
 		leaf = previous;
 		leaf->next = NULL;
 		listSize -= 1;
+		delete toRemove;
 		return cache;
 	} else {
 		T cache = root->data;
+		delete root;
 		root = NULL;
 		leaf = NULL;
 		listSize -= 1;
@@ -183,8 +186,10 @@ void SecuredLinkedList<T>::removeUnsecured(unsigned int index) {
 		beforePrevious = previous;
 		previous = previous->next;
 	}
+	SecuredLinkedListNode<T> *toRemove = previous;
 	beforePrevious->next = previous->next;
 	listSize -= 1;
+	delete toRemove;
 }
 
 template<typename T>
@@ -219,9 +224,11 @@ T SecuredLinkedList<T>::shiftUnsecured() {
 		return T();
 	}
 	if(listSize > 1) {
+		SecuredLinkedListNode<T> *toRemove = root;
 		T cache = root->data;
 		root = root->next;
 		listSize -= 1;
+		delete toRemove;
 		return cache;
 	} else {
 		return popUnsecured();
