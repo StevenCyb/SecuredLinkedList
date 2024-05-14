@@ -3,7 +3,7 @@
 
 #ifndef SecuredLinkedList_h
 #define SecuredLinkedList_h
-#endif
+
 #include <mutex>
 
 template<class T>
@@ -246,3 +246,5 @@ void SecuredLinkedList<T>::clearUnsecured() {
 		shiftUnsecured();
 	}
 }
+
+#endif
